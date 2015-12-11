@@ -12,4 +12,15 @@ has_many :images, dependent: :destroy
  def user_params
       params.require(:subject).permit(:image, :remote_image_url)
     end
+
+
+def self.search(search)
+  if search
+    self.where("name like ?", "%#{search}%")
+  else
+    self.all
+  end
+end
+
+    
 end

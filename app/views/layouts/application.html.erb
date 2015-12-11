@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Registr nájmú" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Registr nájmů" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "vendor/modernizr" %>
@@ -14,47 +15,51 @@
 
 
 
- <body>
-    <div class="row">
-      <nav class="top-bar column" data-topbar>
-        <ul class="title-area">
-          <li class="name">
-            <h1>
-              <a href="/">
-               Registr
-              </a>
-            </h1>
-          </li>
-           <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-          <li class="toggle-topbar"><a href="#"><span>Menu</span></a></li>
-        </ul>
+<nav class="top-bar" data-topbar role="navigation">
+
+  <ul class="title-area">
+
+    <li class="name">
 
 
 
-        <section class="top-bar-section">
-          <!-- Right Nav Section -->
-          <ul class="right">
+      <h1><a href="/">Registr</a></h1>
 
-            <%if user_signed_in? && current_user.is_tenant?%>
-              <li><%=link_to current_user.email, edit_user_registration_path%></li>
-              <li><%=link_to "Odhlásit", destroy_user_session_path, method: :delete%></li>
-              <li><%=link_to "Předměty smlouvy", subjects_path%></li>
-              <li><%=link_to "Můj profil",profiles_path%></li>
-           
+    </li>
 
-            <%end%>
+    
 
-              <%if user_signed_in? && current_user.is_landlord?%>
-              <li><%=link_to current_lessor.email, edit_lessor_registration_path%></li>
-              <li><%=link_to "Odhlásit", destroy_lessor_session_path, method: :delete%></li>
-              <li><%=link_to "Předměty smlouvy", subjects_path%></li>
-              <li><%=link_to "Můj profil", profiles_path%></li>
-               
+   
 
-                <%end%>
-               
 
-            <%if !user_signed_in?  %>
+
+
+  
+
+
+
+     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+
+    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+
+  </ul>
+
+
+
+  <section class="top-bar-section">
+
+    <!-- Right Nav Section -->
+
+    <ul class="right">
+
+ <%if user_signed_in?%>
+ <li><%=link_to current_user.email, edit_user_registration_path%></li>
+      <li><%=link_to "Odhlásit", destroy_user_session_path, method: :delete%></li>
+
+<%end%>
+
+
+<%if !user_signed_in?  %>
 
 
               <li><%=link_to "Přihlásit se ", new_user_session_path%></li>
@@ -67,45 +72,106 @@
 
               <%end%>
 
-          <!-- Left Nav Section -->
+      <li class="has-dropdown">
+
+        <a href="#">Dropdown</a>
+
+        <ul class="dropdown">
 
 
+
+            <%if user_signed_in? && current_user.is_tenant?%>
+             
+            
+              <li><%=link_to "Předměty smlouvy", subjects_path%></li>
+              <li><%=link_to "Můj profil",profiles_path%></li>
+           
+
+            <%end%>
+
+
+            <%if user_signed_in? && current_user.is_landlord?%>
+             
+              <li><%=link_to "Předměty smlouvy", subjects_path%></li>
+              <li><%=link_to "Můj profil", profiles_path%></li>
                
-                   <ul class="left">
-            <li class="has-form">
-              <div class="row collapse">
-               
-              <div class="large-5 small-9 columns">
 
+                <%end%>
+
+    
+
+        </ul>
+
+      </li>
+
+    </ul>
+
+ 
+
+    <!-- Left Nav Section -->
+
+    <ul class="left">
+
+
+
+      <li class="has-form">
+
+      <div class="row collapse">
+
+
+
+
+        <div class="large-5 small-9 columns">
                   <%= form_tag subjects_path, method: :get, class: "navbar-form navbar-right", role: "search" do %>
-                  <p><%= text_field_tag :search, params[:search], class: "radius-left expand", placeholder: "Vyhledávání" %></p>  
+                  <p><%= text_field_tag :search, params[:search], class: "radius-left expand", placeholder: "Vyhledávání" %></p>    
+        </div>
 
-              </div>
+        <div class="large-4 small-3 columns">
+                   <p><%= submit_tag "Hledat", name: nil, class: "alert button expand" %></p>       
+
+              <%end%>           
+        </div>
 
 
-              <div class="large-4 small-3 columns">
-                  
-                    <p><%= submit_tag "Hledat", name: nil, class: "radius-right button" %></p>
+       
 
-                    <% end %>            
+        <div class="small-3 columns">
+                  <%=link_to "Rozšířené", searches_path, class: "button"%>
+        </div>
 
-              </div>
 
-              <div class="small-3 columns">
 
-                    <p><%=link_to "Rozšířené vyhledávání"%></p>
 
-               </div>
+</div>
+    </li>
 
+
+
+
+    </ul>
+
+ 
+ 
+ 
                
-              </div>
-            </li>
-          </ul>
-
       
-        </section>
-      </nav>
-    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  </section>
+
+</nav>
+
 
 
 

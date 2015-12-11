@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-  resources :post_attachments
+  resources :searches
   resources :users
   #resources :renter
   resources :profiles

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :contracts
+  resources :contracts
   resources :searches
   resources :users
   #resources :renter

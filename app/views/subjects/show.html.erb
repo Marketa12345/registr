@@ -23,8 +23,10 @@
 <%= image_tag @subject.image_url(:small) if @subject.image? %>
 
 
-
+ <%if user_signed_in? && current_user.is_landlord?%>
 <%= link_to 'Edit', edit_subject_path(@subject) %> |
+<%end%>
+
 <%= link_to 'Back', subjects_path %>
 
 

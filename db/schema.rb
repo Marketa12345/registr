@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151211083049) do
+ActiveRecord::Schema.define(version: 20151211150306) do
+
+  create_table "contracts", force: :cascade do |t|
+    t.date     "date_from"
+    t.date     "date_to"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "images", force: :cascade do |t|
     t.integer  "subject_id"

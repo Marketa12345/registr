@@ -19,8 +19,14 @@
         <td><%= subject.type %></td>
         <td><%= subject.description %></td>
         <td><%= link_to 'Show', subject %></td>
+
+         <%if user_signed_in? && current_user.is_landlord?%>
+
         <td><%= link_to 'Edit', edit_subject_path(subject) %></td>
         <td><%= link_to 'Destroy', subject, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+
+
+<%end%>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +34,7 @@
 
 <br>
 
+ <%if user_signed_in? && current_user.is_landlord?%>
+
 <%= link_to 'New Subject', new_subject_path %>
+<%end%>

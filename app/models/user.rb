@@ -2,12 +2,20 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable
+
+
+  validates :role, presence: true
+
+def is_landlord?
+	role == "landlord"
+end
+
+def is_tenant?
+	role == "tenant"
 end
 
 
- #class User::ParameterSanitizer < Devise::ParameterSanitizer
-  # def sign_in
-  #   default_params.permit(:username, :email)
- #  end
- #end
+end
+
+

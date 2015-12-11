@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
   
-  devise_for :lessors
+  resources :post_attachments
   resources :users
-  resources :lessor
   #resources :renter
   resources :profiles
   resources :subjects

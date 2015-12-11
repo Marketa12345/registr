@@ -15,6 +15,12 @@ class SubjectsController < ApplicationController
   # GET /subjects/new
   def new
     @subject = Subject.new
+
+    5.times do 
+      @subject.images.build
+
+    end
+
   end
 
   # GET /subjects/1/edit
@@ -69,6 +75,6 @@ class SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.require(:subject).permit(:name, :type, :description)
+      params.require(:subject).permit(:name, :type, :description, :image, :remote_image_url, images_attributes: [:image, :id])
     end
 end

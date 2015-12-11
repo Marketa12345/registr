@@ -34,6 +34,8 @@ gem 'foundation-rails'
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+#vyhledavani
+gem 'ransack'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

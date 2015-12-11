@@ -1,9 +1,3 @@
-# encoding: utf-8
-
-
-
-
-
 class ImageUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
 
@@ -14,9 +8,16 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   version :thumb do
-    process :resize_to_limit => [200, 200]
+    process :resize_to_limit => [100, 100]
+  end
+
+  version :small do
+    process :resize_to_limit => [250, 250]
   end
 end
+
+
+
 
 
 
@@ -52,4 +53,4 @@ end
   #   "something.jpg" if original_filename
   # end
 
-end
+

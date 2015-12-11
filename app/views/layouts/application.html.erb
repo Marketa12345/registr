@@ -35,40 +35,72 @@
           <!-- Right Nav Section -->
           <ul class="right">
 
-            <%if user_signed_in?%>
+            <%if user_signed_in? && current_user.is_tenant?%>
               <li><%=link_to current_user.email, edit_user_registration_path%></li>
               <li><%=link_to "Odhlásit", destroy_user_session_path, method: :delete%></li>
               <li><%=link_to "Předměty smlouvy", subjects_path%></li>
+              <li><%=link_to "Můj profil",profiles_path%></li>
            
 
             <%end%>
 
-              <%if lessor_signed_in?%>
+              <%if user_signed_in? && current_user.is_landlord?%>
               <li><%=link_to current_lessor.email, edit_lessor_registration_path%></li>
               <li><%=link_to "Odhlásit", destroy_lessor_session_path, method: :delete%></li>
               <li><%=link_to "Předměty smlouvy", subjects_path%></li>
+              <li><%=link_to "Můj profil", profiles_path%></li>
                
 
                 <%end%>
                
-            <%if !user_signed_in? && !lessor_signed_in? %>
-              <li><%=link_to "Registrace nájemníka", new_user_registration_path%></li>
-              <li><%=link_to "Registrace Pronajímatele"%></li>
-              <li><%=link_to "Přihlásit se jako nájemník", new_user_session_path%></li>
-              <li><%=link_to "Přihlásit se jako Pronajímatel", lessor_session_path%></li>
-              <li><%=link_to "Předměty smlouvy", subjects_path%></li>
-              
-          <%end%>
+
+            <%if !user_signed_in?  %>
 
 
+              <li><%=link_to "Přihlásit se ", new_user_session_path%></li>
+ 
+        
+              <li><%=link_to "Registrace", new_user_registration_path%></li>
+             
+ 
+        
 
-          </ul>
+              <%end%>
 
           <!-- Left Nav Section -->
 
 
                
-             
+                   <ul class="left">
+            <li class="has-form">
+              <div class="row collapse">
+               
+              <div class="large-5 small-9 columns">
+
+                  <%= form_tag subjects_path, method: :get, class: "navbar-form navbar-right", role: "search" do %>
+                  <p><%= text_field_tag :search, params[:search], class: "radius-left expand", placeholder: "Vyhledávání" %></p>  
+
+              </div>
+
+
+              <div class="large-4 small-3 columns">
+                  
+                    <p><%= submit_tag "Hledat", name: nil, class: "radius-right button" %></p>
+
+                    <% end %>            
+
+              </div>
+
+              <div class="small-3 columns">
+
+                    <p><%=link_to "Rozšířené vyhledávání"%></p>
+
+               </div>
+
+               
+              </div>
+            </li>
+          </ul>
 
       
         </section>

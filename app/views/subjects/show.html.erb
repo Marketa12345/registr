@@ -16,11 +16,15 @@
 </p>
 
 
+<%@subject.images.each do |im|%>
+<%=image_tag im.image.url(:small)%>
+<%end%>
 
-
-<%= image_tag painting.image_url(:thumb) if painting.image? %>
+<%= image_tag @subject.image_url(:small) if @subject.image? %>
 
 
 
 <%= link_to 'Edit', edit_subject_path(@subject) %> |
 <%= link_to 'Back', subjects_path %>
+
+
